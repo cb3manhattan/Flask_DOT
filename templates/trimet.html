@@ -1,0 +1,403 @@
+
+
+</html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+
+  <title>Calvin Brown</title>
+
+  <meta name="author" content="" />
+  <meta name="description" content="Urban Planner, Data Analyst, Cartographer, Transit and Safe Streets Advocate">
+
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io//css/bootstrap4.min.css" />
+<link rel="stylesheet" href="https://calvinbrown32.github.io//css/bootstrap-social.css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io/css/pygment_highlights.css" />
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io/css/main.css" />
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+
+
+<script type="text/javascript" src='https://calvinbrown32.github.io/JWAFiles/route2outboundline.js'></script>
+<script type="text/javascript" src='https://calvinbrown32.github.io/JWAFiles/route2outboundstops.js'></script>
+<script type="text/javascript" src='https://calvinbrown32.github.io/JWAFiles/route2inboundline.js'></script>
+<script type="text/javascript" src='https://calvinbrown32.github.io/JWAFiles/route2inboundstops.js'></script>
+<script type="text/javascript" src='https://calvinbrown32.github.io/JWAFiles/maxstops.js'></script>
+<script type="text/javascript" src='https://calvinbrown32.github.io/JWAFiles/maxline.js'></script>
+
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 600px;
+			height: 400px;
+		}
+	</style>
+
+	<style>#map { width: 99%; height: 500px; }
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
+
+
+</head>
+  <!-- The head should not be edited -->
+
+
+<body>
+
+
+<!-- This is the navbar and should not be edited -->
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+    <a class="navbar-brand-custom" href="http://calvinbrown32.github.io">Calvin Brown</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+
+   <!-- ** FUTURE ABOUT PAGE HERE:
+        <li class="nav-item-custom">
+          <a class="nav-link" href="https://calvinbrown32.github.io/resume">About</a> </li>
+    ** -->
+
+        <li class="nav-item-custom">
+        <a class="nav-link" href="https://calvinbrown32.github.io/resume">Portfolio</a> </li>
+
+       <li class="nav-item-custom">
+       <a class="nav-link" href="https://calvinbrown32.github.io/essays">Essays</a> </li>
+
+        <li class="nav-item-custom">
+        <a class="nav-link" href="https://calvinbrown32.github.io/resume">Resume</a> </li>
+
+       <li class="nav-item-custom">
+       <a class="nav-link" href="https://calvinbrown32.github.io/contact">Contact</a> </li>
+
+    </ul>
+  </div>
+</nav>
+
+<!-- The header below should be modified or removed depending on the theme of the website.-->
+
+
+<header class="header-section ">
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="page-heading">
+          <h1>TriMet Residential Coverage</h1>
+
+            <hr class="small">
+            <span class="page-subheading">Residential Coverage Analysis of Route 2 and Max Yellow Line</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- The main body content should be added here -->
+<div class="container">
+<div class="row">
+<div class="col">
+	<p> This residential coverage analysis estimates the number of inhabitants within ½ mile of each station on the MAX Yellow Line and each bus stop of the inbound and outbound Route 2 bus.  Understanding how many people live near transit is crucial to understanding and predicting ridership, as well as making difficult decisions regarding transit investment and planning. The interactive map and charts I created help viewers understand this important statistic, and give them the ability to pinpoint bus stops that have exceptionally low or high residential coverage.  </p>
+
+	<h4> Challenges </h4>
+	<p>The challenge of this project was creating a sound methodology for estimating the population within ½ mile of transit stops using population data that corresponds to census block groups, which have a significantly different geography than that of the ½ mile buffers. </p>
+		<h4> Methodology  </h4>
+		<p>First, I created a ½ mile buffer around each transit stop.  Although these buffer areas might seem like appropriate areas to use to calculate the residential coverage of each stop, many of them overlap with other buffer areas, which would mean that residents living in multiple, overlapping buffer areas would be counted multiple times, leading to poor estimates. To solve this issue, I dissolved all of the buffered areas into a single polygon for each transit route, and next generated Voronoi polygons using the transit stops. These polygons form a region around each transit stop consisting of all points closer to that transit stop than any other, elegantly dividing up the transit stop buffer area in a way that prevents double counting and mirrors the way people usually use the nearest viable stop when they take transit.
+<br>
+<br>
+These Voronoi polygons, clipped to the ½ mile buffers, are the transit stop residential coverage areas. As mentioned earlier, the population data does not correspond to these polygons. To address this issue, I calculated the area for each of the spaces where the residential coverage areas overlap a given census block group, and divided that by the total area of the block group. Multiplying the total population of the block group by the result of this division produces a strong estimate of the population living within the overlapping areas.  These areas and their respective population estimates are then aggregated to determine the total population within each transit stop residential coverage area.
+ </p>
+
+
+	<h4> TriMet Residential Coverage Interactive Map</h4>
+	<p>This map allows users to view the residential coverage of each transit stop. The residential coverage area for each stop is defined as the region around a given transit stop consisting of all points closer to that transit stop than any other transit stop on the same route, and within ½ mile from the stop.  </p>
+	<br>
+
+
+	<div id='map'class="mx-auto"></div>
+	<br>
+	<br>
+	<hr>
+
+    <div class = "row">
+	<div class="col-md-12 text-center">
+	<img src="https://calvinbrown32.github.io/JWAFiles/MaxlineChart-01.jpg
+      " alt="maxchart" width= 60%>
+
+
+	<br>
+	<br>
+	<hr>
+
+
+	<img src="https://calvinbrown32.github.io/JWAFiles/route2outboundchart.jpg
+      " alt="route2outboundchart" width= 70%>
+
+	<br>
+	<br>
+	<hr>
+
+	<img src="https://calvinbrown32.github.io/JWAFiles/route2inboundchart.jpg
+      " alt="route2inboundchart" width= 70%>
+	   </div>
+</div>
+
+
+</div>
+</div>
+</div>
+    <br>
+
+
+
+
+
+
+<script>
+var map = L.map('map');
+map.createPane('lirr');
+    map.getPane('lirr').style.zIndex = 640;
+
+map.createPane('stops');
+    map.getPane('stops').style.zIndex = 660;
+
+map.createPane('bus');
+    map.getPane('bus').style.zIndex = 650;
+
+
+    var route2outboundline = L.geoJson(route2outboundline, {
+               color: "#9595e2",
+             weight: 2,
+                  opacity: 6,
+                  pane: 'bus'
+       }).addTo(map);
+
+   var route2inboundline = L.geoJson(route2inboundline, {
+    color: "#2b2bc4",
+        weight: 1.5,
+        opacity: 6,
+        pane: 'bus'
+    }).addTo(map);
+
+   var maxline = L.geoJson(maxline, {
+    color: "#f9d831",
+        weight: 4.5,
+        opacity: 6,
+        pane: 'lirr'
+    }).addTo(map);
+
+    var geojsonMarkerOptions = {
+    radius: 3.5,
+    fillColor: "#ffffff",
+    color: "#000",
+    pane: "stops",
+    weight: .5,
+    opacity: 1,
+    fillOpacity: 0.8
+    };
+       var geojsonMarkerOptionsOutbound = {
+    radius: 3,
+    fillColor: "#9595e2",
+    color: "#000",
+    pane: "stops",
+    weight: .5,
+    opacity: 1,
+    fillOpacity: 0.8
+    };
+       var geojsonMarkerOptionsInbound = {
+    radius: 3,
+    fillColor: "#2b2bc4",
+    color: "#000",
+    pane: "stops",
+    weight: .5,
+    opacity: 1,
+    fillOpacity: 0.8
+};
+
+function onEachFeature(feature, layer) {
+		var popupContent = "" ;
+
+		if (feature.properties && feature.properties.STATION ) {
+			popupContent += feature.properties.STATION;
+		}
+
+        	if (feature.properties && feature.properties.stop_name) {
+			popupContent += feature.properties.stop_name;
+		}
+
+		if (feature.properties && feature.properties.SumByStati) {
+			popupContent += "<h6>" + (feature.properties.SumByStati) + " people live in the residential coverage area for this station</h6>";
+		}
+
+		if (feature.properties && feature.properties.vorbguni_1) {
+			popupContent += "<h6>" + (feature.properties.vorbguni_1) + " people live in the residential coverage area for this bus stop. </h6>";
+		}
+
+		if (feature.properties && feature.properties.outPopSum) {
+			popupContent += "<h6>" + (feature.properties.outPopSum) + " people live in the residential coverage area for this bus stop </h6>";
+		}
+
+		layer.bindPopup(popupContent);
+	}
+
+
+L.geoJSON(maxstops, {
+
+	onEachFeature: onEachFeature,
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+}).addTo(map);
+
+L.geoJSON(route2outboundstops, {
+
+	onEachFeature: onEachFeature,
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptionsOutbound);
+    }
+}).addTo(map);
+
+L.geoJSON(route2inboundstops, {
+
+	onEachFeature: onEachFeature,
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptionsInbound);
+    }
+}).addTo(map);
+
+
+map.createPane('labels');
+// This pane is above markers but below popups
+map.getPane('labels').style.zIndex = 650;
+// Layers in this pane are non-interactive and do not obscure mouse/touch events
+map.getPane('labels').style.pointerEvents = 'none';
+var cartodbAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+attribution: cartodbAttribution
+}).addTo(map);
+var positronLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+attribution: cartodbAttribution,
+pane: 'labels'
+}).addTo(map);
+
+map.setView([45.55733331588203, -122.53807067871094], 12);
+
+
+
+
+// control that shows state info on hover
+
+
+var info = L.control();
+    info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'info');
+        this.update();
+        return this._div;
+    };
+    info.update = function (props) {
+        this._div.innerHTML = '<b>Click on features for more info</b>';
+    };
+    info.addTo(map);
+
+
+var legend = L.control({position: 'bottomright'});
+
+
+legend.onAdd = function (map) {
+var div = L.DomUtil.create('div', 'info legend');
+
+
+div.innerHTML = 'TriMet ' + '<br>' + '<span style="color:#2b2bc4;">──</span>  Route 2 Inbound' + '<br>' + '<span style="color:#9595e2;">──</span>  Route 2 Outbound'+ '<br>' + '<span style="color:#f9d831;">──</span>  MAX Yellow Line' ;
+return div;
+};
+
+legend.addTo(map);
+
+
+map.setView([45.55733331588203, -122.53807067871094], 12);
+</script>
+
+
+<!-- The footer is straightforward and does not need to be modified. -->
+
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <ul class="list-inline text-center footer-links">
+
+            <li class="list-inline-item">
+                <a href="mailto:calvinbrown32@gmail.com" title="Email me"><span class="fa-stack                 fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Email me</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+             <a href="https://twitter.com/calvinbrown32" title="Twitter"><span class="fa-stack               fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Twitter</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+                <a href="https://www.instagram.com/calvindechicago" title="Instagram"><span                     class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Instagram</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+                <a href="https://linkedin.com/in/calvin-brown-467b4b33" title="LinkedIn"><span                  class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </li>
+        </ul>
+
+      <p class="copyright text-muted">
+      &nbsp;&bull;&nbsp;
+      2021
+
+      &nbsp;&bull;&nbsp;
+      <a href="https://calvinbrown32.github.io">Calvin Brown</a>
+      </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,74 @@
+
+<html>
+  <head>
+    <title>File Upload v4</title>
+  <!-- >
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
+  -->
+      <script src="./static/dropzone.min.js"></script>
+      <script src="./static/jquery.js"></script>
+
+      <link rel="stylesheet" type="text/css" href="./static/dropzone.min.css">
+  </head>
+  <body>
+    <h1>File Upload v4</h1>
+    <form action="{{ url_for('upload_files4') }}" class="dropzone" id="mydropzone">
+    </form>
+
+
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script>
+
+let filelist = new Array();
+
+// Set automatic instantiation off
+Dropzone.autoDiscover = false;
+
+var myDropzone = new Dropzone("#mydropzone", {
+   addRemoveLinks: true,
+   init: function() {
+     this.on("addedfile", function(file, data) {
+     document.getElementById('fileaddrmv').innerHTML= "The following file was added: " + file.name;
+     console.log(file)
+     filelist.push(file.name)
+     console.log("Added Files Array:")
+     console.log(filelist)
+     });
+
+     this.on("removedfile", function(file, data) {
+     document.getElementById('fileaddrmv').innerHTML= "The following file was removed: " + file.name;
+     console.log(file.name)
+        $.ajax({
+            url: '/process_files',
+            data: {"filename" : file.name},
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+
+     /* here do AJAX call to your server ... */
+     });
+   }
+});
+</script>
+
+<script>
+</script>
+
+
+<p id="fileaddrmv"></p>
+
+
+<br>
+
+
+  </body>
+</html>

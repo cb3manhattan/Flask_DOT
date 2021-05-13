@@ -1,0 +1,536 @@
+
+
+</html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+
+  <title>Calvin Brown</title>
+
+  <meta name="author" content="" />
+  <meta name="description" content="Urban Planner, Data Analyst, Cartographer, Transit and Safe Streets Advocate">
+
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io//css/bootstrap4.min.css" />
+<link rel="stylesheet" href="https://calvinbrown32.github.io//css/bootstrap-social.css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io/css/pygment_highlights.css" />
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io/css/main.css" />
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+
+
+
+<script type="text/javascript" src='https://calvinbrown32.github.io/geojson/NYC/modeshareandtotal.js'></script>
+<script type="text/javascript" src='https://calvinbrown32.github.io/geojson/NYC/lirrreproject.js'></script>
+<script type="text/javascript" src='https://calvinbrown32.github.io/geojson/NYC/MNRFinal.js'></script>
+<script type="text/javascript" src='https://calvinbrown32.github.io/geojson/NYC/njpassengertrain.js'></script>
+
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+        <style>
+        body {
+            font: 10px sans-serif;
+        }
+        select {
+            display: block;
+        }
+        .bar {
+            fill: #4f7bc1;
+            opacity: 0.8;
+        }
+        .line {
+         fill: #c11717;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+	paragraph {
+	    font: 14px sans-serif;
+	}
+
+	</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+
+		#map { width: 99%; height: 500px; }
+
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
+
+
+
+
+</head>
+  <!-- The head should not be edited -->
+
+
+<body>
+
+
+<!-- This is the navbar and should not be edited -->
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+    <a class="navbar-brand-custom" href="http://calvinbrown32.github.io">Calvin Brown</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+
+   <!-- ** FUTURE ABOUT PAGE HERE:
+        <li class="nav-item-custom">
+          <a class="nav-link" href="https://calvinbrown32.github.io/resume">About</a> </li>
+    ** -->
+
+        <li class="nav-item-custom">
+        <a class="nav-link" href="https://calvinbrown32.github.io/resume">Portfolio</a> </li>
+
+       <li class="nav-item-custom">
+       <a class="nav-link" href="https://calvinbrown32.github.io/essays">Essays</a> </li>
+
+        <li class="nav-item-custom">
+        <a class="nav-link" href="https://calvinbrown32.github.io/resume">Resume</a> </li>
+
+       <li class="nav-item-custom">
+       <a class="nav-link" href="https://calvinbrown32.github.io/contact">Contact</a> </li>
+
+    </ul>
+  </div>
+</nav>
+
+<!-- The header below should be modified or removed depending on the theme of the website.-->
+
+
+<header class="header-section ">
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="page-heading">
+          <h1>The Commute Into Manhattan</h1>
+
+            <hr class="small">
+            <span class="page-subheading">The Majority of People Who Work In Manhattan Take Public Transit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- The main body content should be added here -->
+
+<div class="container">
+<div class="row">
+<div class="col">
+
+<paragraph><i>The Commute Into Manhattan Map</i> below highlights the important role that transit, LIRR, and MNR play in regional transportation and access to Manhattan. The map visualizes ACS 2006-2010 Commute Flow data, and includes a hover feature that allows users to see the total number of people that commute into Manhattan from each county, and the percentage of these commuters that use transit. Less people commute into Manhattan from distant counties, but even in these cases a large percentage of commuters rely on transit. It should also be noted that the margin of error increases and accuracy of the data potentially decreases in counties with a smaller number people who commute into Manhattan.
+</paragraph>
+<br>
+<br>
+<paragraph>
+To make the map, I worked with 2009 - 2013 CTPP commute flow <a href=https://www.census.gov/topics/employment/commuting/guidance/flows.html>data</a>, and used postgreSQL to create new columns containing the county level aggregate statistics, which are displayed when the mouse is hovered over a given county. I referenced and used code from a Leaflet interactive choropleth map <a href=https://leafletjs.com/examples/choropleth>tutorial</a>, customizing sections of code to suit my needs. I also used labels-only map tiles and Leaflet's map pane and layer order functionality to overlay the labels above the data layer, improving the map's legibility.</paragraph>
+
+
+	<br>
+	<br>
+
+
+
+
+
+
+<div id='map'class="mx-auto"></div>
+	<br>
+
+
+
+
+
+<script>
+var map = L.map('map');
+map.createPane('lirr');
+	map.getPane('lirr').style.zIndex = 640;
+
+	var lirr = L.geoJson(lirrreproject, {
+       		color: "#0713ff",
+     		weight: 1.2,
+      	        opacity: 7,
+      	        pane: 'lirr'
+   	}).addTo(map);
+
+   var mnrfinal = L.geoJson(mnrfinal, {
+	color: "#f4000c",
+        weight: 1.2,
+        opacity: 7,
+        pane: 'lirr'
+    }).addTo(map);
+
+   var njpassengertrain = L.geoJson(njpassengertrain, {
+	color: "#7c7c7c",
+        weight: 1,
+        opacity: 7,
+        pane: 'lirr'
+    }).addTo(map);
+
+
+map.createPane('labels');
+// This pane is above markers but below popups
+map.getPane('labels').style.zIndex = 650;
+// Layers in this pane are non-interactive and do not obscure mouse/touch events
+map.getPane('labels').style.pointerEvents = 'none';
+var cartodbAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+attribution: cartodbAttribution
+}).addTo(map);
+var positronLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+attribution: cartodbAttribution,
+pane: 'labels'
+}).addTo(map);
+geojson = L.geoJson(commutedata).addTo(map);
+map.setView([40.751418432997454, -73.96047592163086], 7);
+// control that shows state info on hover
+var info = L.control();
+info.onAdd = function (map) {
+this._div = L.DomUtil.create('div', 'info');
+this.update();
+return this._div;
+};
+info.update = function (props) {
+this._div.innerHTML = '<p><b>The Commute Into Manhattan</b></p>' + (props ?
+'In ' + '<b>' + props.name + ' County </b>' + props.sum + ' people commute into Manhattan.' + '<br />' + props.transitmodeshare.toFixed(0) + ' percent of them take public transit.' : 'Hover over a county');
+};
+info.addTo(map);
+// get color depending on population density value
+function getColor(d) {
+return d > 80 ? '#045A8D' :
+d > 70 ? '#2B8CBE' :
+d > 60 ? '#74A9CF' :
+d > 50 ? '#A6BDDB' :
+d > 40 ? '#D0D1E6' :
+d > 0 ? '#F1EEF6' :
+'#FFEDA0';
+}
+function style(feature) {
+return {
+weight: 1,
+opacity: 1,
+color: 'white',
+fillOpacity: 0.8,
+fillColor: getColor(feature.properties.transitmodeshare)
+
+};
+}
+function highlightFeature(e) {
+var layer = e.target;
+layer.setStyle({
+weight: 2,
+color: '#666',
+fillOpacity: 0.8
+});
+if (!L.Browser.ie || !L.Browser.opera || !L.Browser.edge) {
+layer.bringToFront();
+}
+info.update(layer.feature.properties);
+}
+var geojson;
+function resetHighlight(e) {
+geojson.resetStyle(e.target);
+info.update();
+}
+function zoomToFeature(e) {
+map.fitBounds(e.target.getBounds());
+}
+function onEachFeature(feature, layer) {
+layer.on({
+mouseover: highlightFeature,
+mouseout: resetHighlight,
+click: zoomToFeature
+});
+}
+geojson = L.geoJson(commutedata, {
+style: style,
+onEachFeature: onEachFeature
+}).addTo(map);
+map.attributionControl.addAttribution('Commute Flow Data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+var legend = L.control({position: 'bottomright'});
+legend.onAdd = function (map) {
+var div = L.DomUtil.create('div', 'info legend'),
+grades = [0, 40, 50, 60, 70, 80],
+labels = [],
+from, to;
+
+for (var i = 0; i < grades.length; i++) {
+from = grades[i];
+to = grades[i + 1];
+labels.push(
+'<i style="background:' + getColor(from + 1) + '"></i> ' +
+from + (to ? '&ndash;' + to : '+' + ' %'));
+}
+div.innerHTML = '<b>Percentage Of Commuters Who Take Transit</b>' + '<br>' + labels.join(' %' + '<br>') + '<br>' + '<span style="color:#0713ff;">──</span>  Long Island Rail Road ' + '<br>' + '<span style="color:#f4000c;">──</span>  Metro-North Railroad' + '<br>' + '<span style="color:#7c7c7c;">──</span>  New Jersey Transit' ;
+return div;
+};
+legend.addTo(map);
+map.setView([40.751418432997454, -73.96047592163086], 8);
+</script>
+
+
+<hr>
+<br>
+
+<h3>Mean Income of New Jersey Residents by Commute Mode</h3>
+<br>
+<br>
+<paragraph>This interactive chart will be part of a dashboard that provides quick access to transportation mode share, demographics, and income data for commuters traveling into Manhattan's Central Business District (CBD). I am building the dashboard to offer easy access to important data and facts in the congestion pricing debate. My interactive chart, for example, refutes claims that the congestion charge would be a regressive tax by showing that workers who drive have a significantly higher mean income than those taking transit. To make the chart I used 2017 American Community Survey 5 year annual income estimates. I used code from <a href=http://bl.ocks.org/williaster/10ef968ccfdc71c30ef8>this example</a> of an updating bar chart, customizing it to my needs, and adding new code to include the horizontal mean income line.
+</paragraph>
+<br>
+<br>
+ <h6> Choose a county </h6>
+        <div id='vis-container'></div>
+
+
+        <script type="text/javascript">
+
+            // Load data
+             var fileName = "https://calvinbrown32.github.io/data/NJIncomeByMode.csv";
+             var modeFields = ["Drive Alone","Carpool","Public Transportation","Walk","Taxicab, Motorcycle, Bicycle, or Other","Work at Home"];
+            d3.csv(fileName, function(data) {
+                var countyMap = {};
+                var countyMapAverage = {};
+
+                data.forEach(function(d) {
+                    var County = d.County;
+                    countyMap[County] = [];
+                     countyMapAverage[County] = [];
+
+                   // Create Objects for each county: { CountyName: [ bar1Val, bar2Val, ... ] }
+                   modeFields.forEach(function(field) {
+                        countyMap[County].push( +d[field] );
+                   });
+                });
+                makeVis(countyMap);
+            });
+            var makeVis = function(countyMap) {
+                // Define dimensions of vis
+                var margin = { top: 30, right: 50, bottom: 150, left: 50 },
+                    width  = 600 - margin.left - margin.right,
+                    height = 350 - margin.top  - margin.bottom;
+                // Make x scale
+                var xScale = d3.scale.ordinal()
+                    .domain(modeFields)
+                    .rangeRoundBands([0, 250], 0.7);
+                // Make y scale, the domain will be defined on bar update
+                var yScale = d3.scale.linear()
+                       .domain([0,60000])
+                    .range([170,0]);
+                // Create canvas
+                var canvas = d3.select("#vis-container")
+                  .append("svg")
+                    .attr("width",  width  + margin.left + margin.right)
+                    .attr("height", height + margin.top  + margin.bottom)
+                  .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                // Make x-axis and add to canvas
+                var xAxis = d3.svg.axis()
+                    .scale(xScale)
+                    .orient("bottom");
+
+                canvas.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .attr("y", 5)
+                    .attr("x",5)
+                    .attr("dy", ".35em")
+                    .attr("transform", "rotate(40)")
+                    .style("text-anchor", "start");
+
+                // Make y-axis and add to canvas
+                var yAxis = d3.svg.axis()
+                    .scale(yScale)
+                    .orient("left");
+
+                var yAxisHandleForUpdate = canvas.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis);
+
+                yAxisHandleForUpdate.append("text")
+                   .attr("transform", "rotate(-90)")
+                   .attr("y", 6)
+                   .attr("dy", ".71em")
+                   .style("text-anchor", "end")
+                   .text("$ Mean Annual Income");
+                var updateBars = function(data) {
+
+                    var bars = canvas.selectAll(".bar").data(data);
+                    var lines = canvas.selectAll(".line").data(data);
+
+                    // Add bars for new data
+                    bars.enter()
+                      .append("rect")
+                        .attr("class", "bar")
+                        .attr("x", function(d,i) { return xScale( modeFields[i] ); })
+                        .attr("width", xScale.rangeBand())
+                        .attr("y", function(d,i) { return yScale(d); })
+                        .attr("height", function(d,i) { return height - yScale(d); });
+
+
+                    // Update old bars
+                    bars
+                        .transition().duration(250)
+                        .attr("y", function(d,i) { return yScale(d); })
+                        .attr("height", function(d,i) { return height - yScale(d); });
+
+                    // Remove old bars
+                    bars.exit().remove();
+
+
+
+                    // calculate mean income
+                    var incomeaverage = 0;
+                    for (var i = 0; i < data.length; i++) {
+                    incomeaverage += data[i]/6
+  }
+                    //horizontal line for mean income
+                       lines.enter()
+                        .append("rect")
+                        .attr("class", "line")
+                        .attr("transform", "rotate(0)")
+                        .attr("x",0)
+                        .attr("y", function(d,i) { return yScale(incomeaverage); })
+                        .attr("width", width/2)
+                        .attr("height", .5)
+
+                       lines
+                        .transition().duration(250)
+                        .attr("y", function(d,i) { return yScale(incomeaverage); })
+                        .attr("height", .5);
+
+                    // Remove old ones
+              		  lines.exit().remove();
+
+
+                     var averageincometext = canvas.append("g")
+
+
+                     averageincometext.append("text")
+                    .attr("y", function(d) { return yScale(incomeaverage); })
+                    .attr("x", 325)
+                    .style("text-anchor", "end")
+                    .text("mean income")
+                    .attr("class", "line")
+                };
+                // Handler for dropdown value change
+                var dropdownChange = function() {
+                    var newCounty = d3.select(this).property('value'),
+                        newData   = countyMap[newCounty];
+                    updateBars(newData);
+                };
+                // Get names of Counties, for dropdown
+                var counties = Object.keys(countyMap).sort();
+                var dropdown = d3.select("#vis-container")
+                    .insert("select", "svg")
+                    .on("change", dropdownChange);
+                dropdown.selectAll("option")
+                    .data(counties)
+                  .enter().append("option")
+                    .attr("value", function (d) { return d; })
+                    .text(function (d) {
+                        return d[0].toUpperCase() + d.slice(1,d.length); // capitalize 1st letter
+                    });
+                var initialData = countyMap[ counties[0] ];
+                updateBars(initialData);
+            };
+        </script>
+
+</div>
+</div>
+</div>
+
+<!-- The footer is straightforward and does not need to be modified. -->
+
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <ul class="list-inline text-center footer-links">
+
+            <li class="list-inline-item">
+                <a href="mailto:calvinbrown32@gmail.com" title="Email me"><span class="fa-stack                 fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Email me</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+             <a href="https://twitter.com/calvinbrown32" title="Twitter"><span class="fa-stack               fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Twitter</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+                <a href="https://www.instagram.com/calvindechicago" title="Instagram"><span                     class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Instagram</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+                <a href="https://linkedin.com/in/calvin-brown-467b4b33" title="LinkedIn"><span                  class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </li>
+        </ul>
+
+      <p class="copyright text-muted">
+      &nbsp;&bull;&nbsp;
+      2021
+
+      &nbsp;&bull;&nbsp;
+      <a href="https://calvinbrown32.github.io">Calvin Brown</a>
+      </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

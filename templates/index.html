@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calvin Brown Flask App</title>
+</head>
+<body>
+   <h1>
+    Calvin Brown Flask App
+    </h1>
+    <p>
+    This is a test page, with links to various examples of Flask uses and applications. These include an example of templates,
+        Jinja, a Flask data upload, which stores a file to memory, and some example Dash Apps. Over time the goals are to make
+        create a fully fledged website that includes data processing and visualization tools. Please view the links below to see
+        the various examples I created. This page is currently configured to work on localhost.
+    </p>
+    <a href="http://127.0.0.1:5000/upload_site">File Upload Site</a>
+    <div> Files uploaded to the site can be found at url/tmp/-filename-</div>
+    <br>
+
+    <a href="http://127.0.0.1:5000/upload_site3">File Upload Site 3</a>
+    <div> Files uploaded to the site can be found at url/uploads/-filename-</div>
+    <br>
+
+    <a href="http://127.0.0.1:5000/upload_site4">File Upload Site 4</a>
+    <div> Files uploaded to the site can be found at url/uploads/-filename-</div>
+    <br>
+
+    <a href="http://127.0.0.1:5000/data_test">Data test page </a> <br>
+    <div> This page downloads a csv, parses it, and displays the data in a nicely formatted way </div>
+    <br>
+    <a href="http://127.0.0.1:5000/test_page/banana">Test page banana </a> <br>
+    <div> This flask route  demonstrates variable rules. See app6 code for more details </div>
+    <br>
+    <a href="http://127.0.0.1:5000/dashapp">Dash App 1</a> <br>
+   <div> This flask route  demonstrates a sample interactive Dash Graph </div>
+    <br>
+
+    <a href="http://127.0.0.1:5000/dashapp_tims">Dash App TIMS</a> <br>
+    <div> This flask route  demonstrates a sample interactive Dash Graph using TIMS data</div>
+    <br>
+
+     <a href="http://127.0.0.1:5000/portfolio">Portfolio Website</a> <br>
+    <div> This is a test to see if the source code from my github page works as standalone html</div>
+    <br>
+
+   <a href="http://127.0.0.1:5000/portfolio2">Portfolio Website2</a> <br>
+    <div> This link contains my effort to refactor my website to include Bootstrap 4, and to write a website that no longer uses the Jeckyll engine</div>
+    <br>
+
+   <a href="http://127.0.0.1:5000/portfolio_template">Portfolio Template</a> <br>
+    <div> This is the template. This can be used to create new pages. </div>
+    <br>
+
+      <a href="http://127.0.0.1:5000/arrow_highway">Arrow Highway</a> <br>
+    <div> Arrow Highway Description Page </div>
+    <br>
+
+    <a href="http://calvinbrown32.github.io/ResumeAndPortfolio/CTPPGuide.pdf">CTPP Data Guide</a> <br>
+    <div> This is a guide that I created at TSTC that describes how to download and use CTPP data</div>
+    <br>
+
+
+
+  <div>
+        Another cool feature of Flask is Jinja, which allows allows me to pass in information or variables using double curly brackets. This is a name passed into the template via Jinja: {{author}}
+    <div>
+
+    <p> Notes on this work can be found on my Google drive, and in the code repository itself. Some important things to note:
+        I create the Flask and Dash objects differently than most tutorials show. This is to create a Flask driven website,
+        capable of controlling many routes, but that also allows some of those routes to contain dash apps and dashboards.
+<br>
+        See these code snippets for a better idea:
+<br>
+        <br>
+        # Create the Flask object:
+        <br>
+        server = flask.Flask(__name__),
+<br>
+        <br>
+        #Create a dash object:
+        <br>
+        app = dash.Dash(__name__, server=server, url_base_pathname='/dashapp', external_stylesheets=external_stylesheets)
+<br>
+        <br>
+        # Define a route using @server.route(...):
+        <br>
+        @server.route('/data_test')
+        def data_test():
+    </p>
+
+</body>
+</html>

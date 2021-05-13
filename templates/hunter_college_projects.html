@@ -1,0 +1,307 @@
+
+
+</html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+
+  <title>Calvin Brown</title>
+
+  <meta name="author" content="" />
+  <meta name="description" content="Urban Planner, Data Analyst, Cartographer, Transit and Safe Streets Advocate">
+
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io//css/bootstrap4.min.css" />
+<link rel="stylesheet" href="https://calvinbrown32.github.io//css/bootstrap-social.css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io/css/pygment_highlights.css" />
+
+<link rel="stylesheet" href="https://calvinbrown32.github.io/css/main.css" />
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+
+</head>
+  <!-- The head should not be edited -->
+
+
+<body>
+
+
+<!-- This is the navbar and should not be edited -->
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+    <a class="navbar-brand-custom" href="http://calvinbrown32.github.io">Calvin Brown</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+
+   <!-- ** FUTURE ABOUT PAGE HERE:
+        <li class="nav-item-custom">
+          <a class="nav-link" href="https://calvinbrown32.github.io/resume">About</a> </li>
+    ** -->
+
+        <li class="nav-item-custom">
+        <a class="nav-link" href="https://calvinbrown32.github.io/resume">Portfolio</a> </li>
+
+       <li class="nav-item-custom">
+       <a class="nav-link" href="https://calvinbrown32.github.io/essays">Essays</a> </li>
+
+        <li class="nav-item-custom">
+        <a class="nav-link" href="https://calvinbrown32.github.io/resume">Resume</a> </li>
+
+       <li class="nav-item-custom">
+       <a class="nav-link" href="https://calvinbrown32.github.io/contact">Contact</a> </li>
+
+    </ul>
+  </div>
+</nav>
+
+<!-- The header below should be modified or removed depending on the theme of the website.-->
+
+
+<header class="header-section ">
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="page-heading">
+          <h1>Hunter College Projects</h1>
+
+            <hr class="small">
+            <span class="page-subheading">These are projects and visualizations I created while earning my master's degree in Urban Planning and Policy at Hunter College</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- The main body content should be added here -->
+<div class = "container">
+
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Calvin Brown</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+
+    <script type="text/javascript" src='https://calvinbrown32.github.io/geojson/NYC/projects3.js'></script>
+
+<style>
+<style>#map { width: 100%; height: 500px; }
+
+.info {
+padding: 6px 8px;
+font: 14px/16px Arial, Helvetica, sans-serif;
+background: white;
+background: rgba(255,255,255,0.8);
+box-shadow: 0 0 15px rgba(0,0,0,0.2);
+border-radius: 5px; }
+.info h4 { margin: 0 0 5px; color: #777; }
+
+h4.adjust
+{
+line-height: 1.25;
+:link { color: #0000EE; }
+:visited { color: #551A8B; }
+font-size: 95px;
+font-weight:600;
+}
+h2.doubletracking{
+    letter-spacing: 3px;
+}
+h2.centerbyindent{
+    text-indent: 150px
+}
+h2.lineheightadjust{
+	line-height: 2;
+}
+div.topmarginadjust{
+margin-top: 10px;
+}
+
+</style>
+
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+<div class="row">
+<div class="col-sm-6">
+
+<h5><a href="https://calvinbrown32.github.io/dangerouscorridorslic"> Dangerous Corridors in East Long Island City</a><br>
+		<small><i> Visualizing the high rate of crashes in LIC</small></i></h5>
+
+<h5><a href="https://calvinbrown32.github.io/saferstreetslic"> Safer Streets for East Long Island City</a> <br>
+	<small><i> Street and public space improvements in LIC</small></i></h5>
+
+<h5><a href="https://calvinbrown32.github.io/33rdstskycenter"> 33rd Street Sky Center </a><br>
+	<small><i>Vision for an improved 33rd St. - Rawson St. 7 line station</small></i></h5>
+
+<h5 class="adjust"><a href="https://calvinbrown32.github.io/visualizingcalmerintersections"> Visualizing Calmer Intersections</a> <br>
+	<small><i>Proposed improvements for the intersection of Thomson Avenue, Van Dam Street, and Queens Boulevard</small></i></h5>
+</div>
+
+<div class="col-sm-6">
+<div id="mapid" style="height: 450px;"></div>
+
+
+<script>
+var mymap = L.map('mapid').setView([40.751418432997454, -73.96047592163086], 12);
+
+var myStyle = {
+    "color": "#132759",
+    "weight": 2.5,
+    "opacity": 7,
+	}
+var myStyleHover = {
+	"color": "#0000EE",
+	"weight": 2.5,
+   	"opacity": 7,
+	}
+
+function style(feature) {
+		return (myStyle);
+	}
+	function highlightFeature(e) {
+		var layer = e.target;
+		layer.setStyle(myStyleHover);
+		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+			layer.bringToFront();
+		}
+	}
+
+	var geojson;
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+	}
+
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+		});
+ 	if (feature.properties && feature.properties.popupContent) {
+        layer.bindPopup(feature.properties.popupContent);
+		}
+	}
+
+	var info = L.control();
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+	info.update = function (props) {
+		this._div.innerHTML = '<b>Click on features for more info</b>';
+	};
+	info.addTo(mymap);
+
+
+	geojson = L.geoJson(projectdata, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).addTo(mymap);
+
+
+	// --Carto Tile Layer--
+	var mymap = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd'
+	}).addTo(mymap);
+</script>
+
+
+
+</div>
+</div>
+
+
+
+<!-- The footer is straightforward and does not need to be modified. -->
+
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <ul class="list-inline text-center footer-links">
+
+            <li class="list-inline-item">
+                <a href="mailto:calvinbrown32@gmail.com" title="Email me"><span class="fa-stack                 fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Email me</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+             <a href="https://twitter.com/calvinbrown32" title="Twitter"><span class="fa-stack               fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Twitter</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+                <a href="https://www.instagram.com/calvindechicago" title="Instagram"><span                     class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Instagram</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+                <a href="https://linkedin.com/in/calvin-brown-467b4b33" title="LinkedIn"><span                  class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </li>
+        </ul>
+
+      <p class="copyright text-muted">
+      &nbsp;&bull;&nbsp;
+      2021
+
+      &nbsp;&bull;&nbsp;
+      <a href="https://calvinbrown32.github.io">Calvin Brown</a>
+      </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
