@@ -19,12 +19,12 @@ server = flask.Flask(__name__)
 # Setup Upload Folder
 cwd = os.getcwd()
 UPLOAD_FOLDER = os.path.join(cwd, 'uploads')
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'rtf'}
+ALLOWED_EXTENSIONS = {'csv'}
 
 #Configure Server / Flask Object
 server.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 server.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-server.config['UPLOAD_EXTENSIONS'] = ['.txt', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.rtf', '.csv']
+server.config['UPLOAD_EXTENSIONS'] = ['.csv']
 
 
 
@@ -220,7 +220,7 @@ def upload_files4():
 
 @server.route('/process_files', methods=['GET', 'POST'])
 def process_files():
-    filename = request.form['filename']
+    filename = secure_filename(request.form['filename'])
     print(filename)
     file_path = os.path.join(UPLOAD_FOLDER, filename)
     os.remove(file_path)
@@ -228,7 +228,7 @@ def process_files():
 
 @server.route('/deletefile')
 def delete_file():
-    filename = request.form['filename']
+    filename = secure_filename(request.form['filename'])
     file_path = os.path.join(UPLOAD_FOLDER, filename)
     os.remove(file_path)
 
