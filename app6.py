@@ -6,6 +6,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
+import datetime
 from werkzeug.utils import secure_filename
 # from os.path import join, dirname, realpath
 
@@ -211,7 +212,12 @@ def upload_files4():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in server.config['UPLOAD_EXTENSIONS']:
             return "This type of file is not permitted", 400
-        uploaded_file.save(os.path.join(server.config['UPLOAD_FOLDER'], filename))
+        #Make new directory for the current session/visits uploads
+        x = datetime.datetime.now()
+        strtime = x.strftime("%X").replace(':', '_')
+        upload_files4.new_folder_path = os.path.join(UPLOAD_FOLDER, strtime)
+        os.mkdir(upload_files4.new_folder_path)
+        uploaded_file.save(os.path.join(upload_files4.new_folder_path, filename))
     return '', 204
 
 
@@ -222,7 +228,8 @@ def upload_files4():
 def process_files():
     filename = secure_filename(request.form['filename'])
     print(filename)
-    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    new_folder_path = upload_files4.new_folder_path
+    file_path = os.path.join(new_folder_path, filename)
     os.remove(file_path)
     return 'success', 204
 
