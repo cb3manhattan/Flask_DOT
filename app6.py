@@ -6,8 +6,10 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
-import datetime
 from werkzeug.utils import secure_filename
+import datetime
+
+
 # from os.path import join, dirname, realpath
 
 project_root = os.path.dirname(__file__)
@@ -26,6 +28,7 @@ ALLOWED_EXTENSIONS = {'csv'}
 server.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 server.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 server.config['UPLOAD_EXTENSIONS'] = ['.csv']
+server.config['SECRET_KEY'] = '6WX9PIg8zdrQHqwwDVOS_Q'
 
 
 
@@ -201,23 +204,27 @@ def upload_files3():
 
 @server.route('/upload_site4')
 def upload_file4():
+    x = datetime.datetime.now()
+    strtime = x.strftime("%X").replace(':', '_')
+    session['usertime'] = strtime
     files = os.listdir(server.config['UPLOAD_FOLDER'])
     return render_template('/file_upload4.html', files=files)
 
 @server.route('/upload_site4', methods=['GET', 'POST'])
 def upload_files4():
+    #Check to see if user specific upload folder exists. If not, create it.
+    new_folder_path = os.path.join(UPLOAD_FOLDER, session['usertime'])
+    print(new_folder_path)
+    if not os.path.isdir(new_folder_path):
+        os.mkdir(new_folder_path)
+
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
     if filename != '':
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in server.config['UPLOAD_EXTENSIONS']:
             return "This type of file is not permitted", 400
-        #Make new directory for the current session/visits uploads
-        x = datetime.datetime.now()
-        strtime = x.strftime("%X").replace(':', '_')
-        upload_files4.new_folder_path = os.path.join(UPLOAD_FOLDER, strtime)
-        os.mkdir(upload_files4.new_folder_path)
-        uploaded_file.save(os.path.join(upload_files4.new_folder_path, filename))
+        uploaded_file.save(os.path.join(new_folder_path, filename))
     return '', 204
 
 
@@ -228,14 +235,13 @@ def upload_files4():
 def process_files():
     filename = secure_filename(request.form['filename'])
     print(filename)
-    new_folder_path = upload_files4.new_folder_path
-    file_path = os.path.join(new_folder_path, filename)
+    file_path = os.path.join(UPLOAD_FOLDER, session['usertime'], filename)
     os.remove(file_path)
     return 'success', 204
 
 @server.route('/deletefile')
 def delete_file():
-    filename = secure_filename(request.form['filename'])
+    filename = request.form['filename']
     file_path = os.path.join(UPLOAD_FOLDER, filename)
     os.remove(file_path)
 
