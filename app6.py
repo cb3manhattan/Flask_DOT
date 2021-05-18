@@ -23,6 +23,7 @@ server = flask.Flask(__name__)
 # Setup Upload Folder
 cwd = os.getcwd()
 UPLOAD_FOLDER = os.path.join(cwd, 'uploads')
+print(UPLOAD_FOLDER)
 ALLOWED_EXTENSIONS = {'csv'}
 
 #Configure Server / Flask Object
@@ -249,30 +250,34 @@ between site requests, the uploads directory is cleared.
 
 @server.before_request
 def before_request():
+    try:
+        now = datetime.datetime.now()
+        clearuploads()
+        print(session['usertime'])
+        del_dir = os.path.join(UPLOAD_FOLDER, session['usertime'])
+        print(now)
+
+    except:
+        print('Before_Request Uploads Directory Cleanup Process Skipped!')
+        pass
+
+
+# Iterate through upload folder and get last modified elapsed time for each subfolder.
+# The function then deletes all session upload folders that are more than 5 minutes old. 
+def clearuploads():
     now = datetime.datetime.now()
-    print(session['usertime'])
-    del_dir = os.path.join(UPLOAD_FOLDER, session['usertime'])
-    print(now)
-    try:
-        last_active = session['last_active']
-        delta = now - last_active
-        if delta.seconds > 180:
-            session['last_active'] = now
-            for files in os.listdir(del_dir):
-                path = os.path.join(del_dir, files)
-                try:
-                    shutil.rmtree(path)
-                except OSError:
-                    os.remove(path)
-            print('Deleted: ' + files)
-    except:
-        pass
-
-    try:
-        session['last_active'] = now
-    except:
-        pass
-
+    for folder in os.listdir(UPLOAD_FOLDER):
+        path = os.path.join(UPLOAD_FOLDER, folder)
+        st = os.stat(path)
+        mtime = st.st_mtime
+        mdatetimes = datetime.datetime.fromtimestamp(mtime)
+        print('folder: ' + folder + ' was last modified: ' + "mdatetime = {}".format(datetime.datetime.fromtimestamp(mtime)))
+        delta = now - mdatetimes
+        print('...This folder is ' + str(delta.seconds) + ' seconds old.')
+        del_path = os.path.join(UPLOAD_FOLDER, folder)
+        if delta.seconds > 300:
+            shutil.rmtree(del_path)
+    return
 
 @server.route('/deletefile')
 def delete_file():
