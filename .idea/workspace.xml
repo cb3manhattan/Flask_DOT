@@ -79,7 +79,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -90,7 +92,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app6.py</url>
-          <line>237</line>
+          <line>239</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -8,6 +8,7 @@ import dash_html_components as html
 import plotly.express as px
 from werkzeug.utils import secure_filename
 import datetime
+import shutil
 
 
 # from os.path import join, dirname, realpath
@@ -207,6 +208,7 @@ def upload_file4():
     x = datetime.datetime.now()
     strtime = x.strftime("%X").replace(':', '_')
     session['usertime'] = strtime
+    session['last_active'] = x
     files = os.listdir(server.config['UPLOAD_FOLDER'])
     return render_template('/file_upload4.html', files=files)
 
@@ -238,6 +240,37 @@ def process_files():
     file_path = os.path.join(UPLOAD_FOLDER, session['usertime'], filename)
     os.remove(file_path)
     return 'success', 204
+
+'''
+This Decorator runs before every request on the site. Datetime is used to get the current time,
+and this is compared against the time that the upload site is loaded. If more than x minutes pass
+between site requests, the uploads directory is cleared. 
+'''
+
+@server.before_request
+def before_request():
+    now = datetime.datetime.now()
+    print(now)
+    try:
+        last_active = session['last_active']
+        delta = now - last_active
+        if delta.seconds > 180:
+            session['last_active'] = now
+            for files in os.listdir(UPLOAD_FOLDER):
+                path = os.path.join(UPLOAD_FOLDER, files)
+                try:
+                    shutil.rmtree(path)
+                except OSError:
+                    os.remove(path)
+            print('Deleted: ' + files)
+    except:
+        pass
+
+    try:
+        session['last_active'] = now
+    except:
+        pass
+
 
 @server.route('/deletefile')
 def delete_file():
