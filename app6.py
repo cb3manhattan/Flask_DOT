@@ -250,14 +250,16 @@ between site requests, the uploads directory is cleared.
 @server.before_request
 def before_request():
     now = datetime.datetime.now()
+    print(session['usertime'])
+    del_dir = os.path.join(UPLOAD_FOLDER, session['usertime'])
     print(now)
     try:
         last_active = session['last_active']
         delta = now - last_active
         if delta.seconds > 180:
             session['last_active'] = now
-            for files in os.listdir(UPLOAD_FOLDER):
-                path = os.path.join(UPLOAD_FOLDER, files)
+            for files in os.listdir(del_dir):
+                path = os.path.join(del_dir, files)
                 try:
                     shutil.rmtree(path)
                 except OSError:
