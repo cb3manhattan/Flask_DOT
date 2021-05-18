@@ -22,7 +22,7 @@ def clearuploads():
         delta = now - mdatetimes
         print('...This folder is ' + str(delta.seconds) + ' seconds old.')
         del_path = os.path.join(UPLOAD_FOLDER, folder)
-        if delta.seconds > 120:
+        if delta.seconds > 3600:
             shutil.rmtree(del_path)
 
 if __name__ == "__main__":
