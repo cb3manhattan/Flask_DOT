@@ -242,7 +242,7 @@ def process_files():
     return 'success', 204
 
 '''
-This Decorator runs before every request on the site. Datetime is used to get the current time,
+This Decorator runs before every request on the site. Datetime is used to get the current time,,
 and this is compared against the time that the upload site is loaded. If more than x minutes pass
 between site requests, the uploads directory is cleared. 
 '''
