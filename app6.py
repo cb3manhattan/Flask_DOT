@@ -33,7 +33,6 @@ server.config['UPLOAD_EXTENSIONS'] = ['.csv']
 server.config['SECRET_KEY'] = '6WX9PIg8zdrQHqwwDVOS_Q'
 
 
-
 @server.route('/')
 def render_index():
     """index.html"""
@@ -131,8 +130,6 @@ app.layout = html.Div(children=[
 ])
 
 #============================================
-
-
 
 
 @server.route('/test_page/<test_pg_num>')
@@ -263,7 +260,7 @@ def before_request():
 
 
 # Iterate through upload folder and get last modified elapsed time for each subfolder.
-# The function then deletes all session upload folders that are more than 5 minutes old. 
+# The function then deletes all session upload folders that are more than 5 minutes old.
 def clearuploads():
     now = datetime.datetime.now()
     for folder in os.listdir(UPLOAD_FOLDER):
