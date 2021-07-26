@@ -87,16 +87,14 @@
 <div class= "col-sm-12 text-center">
 <h3> Visualizing Travel Behavior Data Using Python and flowmap.blue</h3>
 <div>
-To Do: <br>
+I developed a script that intakes Replica origin/destination data, processes it, and creates an output that can be plugged directly into flowmap.blue to visualize the origins and destinations of over 9,000,000 average weekday trips within Alameda County.
 
-    Write follow up letter
-        Mention Python Driven website, which unlocks a universe of open source data analysis, processing, and visualization tools.
-        I also manage the website on Github, which means I have access to every version of the code
-    Write about Replica, open source tools like flowmap.blue, and using Python to automate and document data and spatial analysis processes, as well as create interactive tools and applications that can be shared or built on the web.
+Replica origin/destination data is created through statistical modeling of anonymized mass mobile location data and U.S. Census data, and provides accurate flow counts at the census tract level for the entire U.S. The Python script I created can therefore be used to efficiently create a similar interactive map for any area or city of the U.S.
 
-    Write about the code sample that I am submitting:
-    The script was produced and shared internally as an interactive Jupyter notebook with the Alta Planning + Design civic analytics team and Replica.
+Included below is the resultant flowmap.blue map, followed by the actual Python code used to parse the Replica data and create the flowmap.blue compatible output. The code is well documented: it contains a summary of steps taken, a to-do list to aid in collaboration and guide future efforts, and each step of the process includes a description of the given line of code.
+
 </div>
+    <br>
 
 </div>
 
@@ -104,7 +102,7 @@ To Do: <br>
 <div class="row align-items-center">
 
     <div class="col-sm-12 text-center">
-        Alameda County Origin/Destination Flows
+      <b> Alameda County Origin/Destination Flows</b>
         <iframe width="800" height="600" src="https://flowmap.blue/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4/embed?v=37.521452,-122.139346,8.81,0,0&a=0&as=1&b=1&bo=75&c=1&ca=1&d=1&fe=1&lt=1&lfm=ALL&col=Default&f=50" frameborder="0" allowfullscreen></iframe>
     <p>Data behind this map is in <a href="https://docs.google.com/spreadsheets/d/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4/edit?usp=sharing">this spreadsheet.</a><br>
     View map on <a href="https://flowmap.blue/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4?v=37.521452,-122.139346,8.81,0,0&a=0&as=1&b=1&bo=75&c=1&ca=1&d=1&fe=1&lt=1&lfm=ALL&col=Default&f=50">flowmap.blue</a></p>
@@ -3668,6 +3666,9 @@ None
     <span class="n">locations</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;locations&#39;</span><span class="p">)</span>
     <span class="n">properties</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;properties&#39;</span><span class="p">)</span>
 </pre></div>
+
+        <br>
+        This website's backend is driven by Python and Flask, and is managed using Git and Github, which allows for clearly documented version control and collaboration. The Github repository for this website can be viewed here. 
 
     </div>
 </div>
