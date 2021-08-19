@@ -96,7 +96,7 @@
 <div class="row align-items-center">
     <div class="col-sm-12">
 <div>
-    I developed a script that intakes <a href="https://replicahq.com/">Replica </a>origin/destination data, processes it, and creates an output that is then plugged directly into flowmap.blue to visualize the origin/destination travel flows of over nine million average weekday trips within Alameda County. <br> <br>
+    I developed a script that parses <a href="https://replicahq.com/">Replica </a>origin/destination data and creates an output that is then plugged directly into flowmap.blue to visualize the origin/destination travel flows of over nine million average weekday trips within Alameda County. <br> <br>
 
 Replica origin/destination data is created through statistical modeling of anonymized mass mobile location data and U.S. Census data, and provides accurate flow counts at the census tract level for the entire U.S. The Python script I created can therefore be used to efficiently create a similar interactive map for any area or city of the U.S. <br> <br>
 
@@ -113,12 +113,14 @@ Included below is the resultant flowmap.blue map, followed by the actual Python 
 <div class="row align-items-center">
     <div class="col-sm-12 text-center">
       <b> Alameda County Origin/Destination Flows</b>
-        <iframe width="800" height="600" src="https://flowmap.blue/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4/embed?v=37.521452,-122.139346,8.81,0,0&a=0&as=1&b=1&bo=75&c=1&ca=1&d=1&fe=1&lt=1&lfm=ALL&col=Default&f=50" frameborder="0" allowfullscreen></iframe>
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe src="https://flowmap.blue/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4/embed?v=37.521452,-122.139346,8.81,0,0&a=0&as=1&b=1&bo=75&c=1&ca=1&d=1&fe=1&lt=1&lfm=ALL&col=Default&f=50" frameborder="0" allowfullscreen></iframe>
     <p>Data behind this map is in <a href="https://docs.google.com/spreadsheets/d/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4/edit?usp=sharing">this spreadsheet.</a><br>
     View map on <a href="https://flowmap.blue/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4?v=37.521452,-122.139346,8.81,0,0&a=0&as=1&b=1&bo=75&c=1&ca=1&d=1&fe=1&lt=1&lfm=ALL&col=Default&f=50">flowmap.blue</a></p>
     </div>
+    </div>
 </div>
-
+<br>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
 <link rel="stylesheet" href="custom.css">
