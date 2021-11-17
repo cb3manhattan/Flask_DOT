@@ -20,6 +20,9 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
+
+
+
 <link rel="stylesheet" href="https://calvinbrown32.github.io/css/pygment_highlights.css" />
 
 <link rel="stylesheet" href="https://calvinbrown32.github.io/css/main.css" />
@@ -28,10 +31,20 @@
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
 
-</head>
+<!-- OPEN LAYERS -->
 
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css" type="text/css">
 
-  <body>
+  <style>
+      .maptest {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+
+  </head>
+<body>
 
 <!-- <nav class="navbar navbar-expand-md navbar-custom"> -->
 <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
@@ -86,659 +99,44 @@
 <div class="container">
 <div class="row align-items-center">
 <div class= "col-sm-12 text-center">
-<h3> Visualizing Travel Behavior Data Using Python and flowmap.blue</h3>
-    <br>
-</div>
-</div>
-</div>
 
+    <h3> Open Layers Example </h3>
+
+
+
+
+
+        </div>
+    </div>
+</div>
 <div class="container">
-<div class="row align-items-center">
-    <div class="col-sm-12">
-<div>
-    I developed a script that parses <a href="https://replicahq.com/">Replica </a>origin/destination data and creates an output that is then plugged directly into flowmap.blue to visualize the origin/destination travel flows of over nine million average weekday trips within Alameda County. <br> <br>
-
-Replica origin/destination data is created through statistical modeling of anonymized mass mobile location data and U.S. Census data, and provides accurate flow counts at the census tract level for the entire U.S. The Python script I created can therefore be used to efficiently create a similar interactive map for any area or city of the U.S. <br> <br>
-
-Included below is the resultant flowmap.blue map, followed by the actual Python code used to parse the Replica data and create the flowmap.blue compatible output. The code is well documented: it contains a summary of steps taken, a to-do list to aid in collaboration and guide future efforts, a list of outstanding questions, and a brief description for each section of code.
-
-</div>
-</div>
-</div>
-    <br>
-
-</div>
-
-<div class="container">
-<div class="row align-items-center">
-    <div class="col-sm-12 text-center">
-      <b> Alameda County Origin/Destination Flows</b>
-        <div class="embed-responsive embed-responsive-16by9">
-        <iframe src="https://flowmap.blue/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4/embed?v=37.521452,-122.139346,8.81,0,0&a=0&as=1&b=1&bo=75&c=1&ca=1&d=1&fe=1&lt=1&lfm=ALL&col=Default&f=50" frameborder="0" allowfullscreen></iframe>
-    <p>Data behind this map is in <a href="https://docs.google.com/spreadsheets/d/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4/edit?usp=sharing">this spreadsheet.</a><br>
-    View map on <a href="https://flowmap.blue/1iGK8eMyLZPVSGV-VqFO_n9jWUgl1mF6PSnOUYtsj0Q4?v=37.521452,-122.139346,8.81,0,0&a=0&as=1&b=1&bo=75&c=1&ca=1&d=1&fe=1&lt=1&lfm=ALL&col=Default&f=50">flowmap.blue</a></p>
-    </div>
-    </div>
-</div>
-<br>
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
-
-<!-- Loading mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
-        }
-    });
-    </script>
-    <!-- End of mathjax configuration -->
-
-
-    <div class="col-sm-12 text-center">
-    <h3> Python Code Used in this Project</h3>
-    </div>
-
-    <div class="col-sm-12">
-
-            <p> Below is an HTML export of the Jupyter Notebook containing the Python code created for this project.
-             To view and run Python code using an actual Jupyter Notebook, check out my <a href="https://calvinbrown32.github.io/jupyter_mode_share">Automating GIS and Data Analysis with Python</a> project. </p>
-     </div>
-
-<div class= "col-sm-12">	
-  <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[145]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### This Script is designed to parse and aggregate Replica data so that it can be placed into Flowmap_Blue</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">STEPS</span> <span class="n">COMPLETED</span> <span class="n">IN</span> <span class="n">THIS</span> <span class="n">NOTEBOOK</span>
-
-<span class="o">-</span> <span class="mi">1</span> <span class="n">Import</span> <span class="n">Replica</span> <span class="n">Data</span> <span class="ow">and</span> <span class="n">Census</span> <span class="n">Data</span>
-<span class="o">-</span> <span class="mi">2</span> <span class="n">Make</span> <span class="n">Centroids</span> <span class="k">for</span> <span class="n">census</span> <span class="n">tracts</span><span class="o">.</span>
-    <span class="o">-</span> <span class="n">These</span> <span class="n">should</span> <span class="n">have</span> <span class="nb">all</span> <span class="n">census</span> <span class="n">tract</span> <span class="n">attributes</span>
-    <span class="o">-</span> <span class="n">Create</span> <span class="n">Longitude</span> <span class="o">/</span> <span class="n">Latitude</span> <span class="n">Fields</span> <span class="k">for</span> <span class="n">the</span> <span class="n">centroids</span>
-<span class="o">-</span> <span class="mi">3</span> <span class="n">Join</span> <span class="n">Replica</span> <span class="n">Data</span> <span class="n">to</span> <span class="n">Centroids</span>
-<span class="o">-</span> <span class="mi">4</span> <span class="n">Create</span> <span class="n">sheet</span> <span class="n">of</span> <span class="n">origin</span> <span class="ow">and</span> <span class="n">destination</span> <span class="n">locations</span> <span class="n">that</span> <span class="n">matches</span> <span class="n">Flowmap</span> <span class="n">blue</span> <span class="n">template</span>
-<span class="o">-</span> <span class="mi">5</span> <span class="n">Review</span> <span class="n">sample</span> <span class="n">Flowmap</span> <span class="n">Blue</span> <span class="n">project</span> <span class="n">to</span> <span class="n">see</span> <span class="n">which</span> <span class="n">parts</span> <span class="n">of</span> <span class="n">template</span> <span class="n">are</span> <span class="n">necessary</span>
-
-
-<span class="n">TO</span> <span class="n">DO</span>
-<span class="o">-</span> <span class="mi">6</span> <span class="n">Strategize</span> <span class="n">how</span> <span class="n">Flows</span> <span class="n">can</span> <span class="n">be</span> <span class="n">aggregated</span><span class="o">.</span> <span class="n">Eventually</span> <span class="n">this</span> <span class="n">should</span> <span class="n">be</span> <span class="n">interactive</span> <span class="ow">and</span> <span class="n">flexible</span><span class="p">,</span>
-    <span class="n">so</span> <span class="n">that</span> <span class="n">users</span> <span class="n">can</span> <span class="n">choose</span> <span class="n">the</span> <span class="n">times</span><span class="p">,</span> <span class="n">dates</span><span class="p">,</span> <span class="n">weeks</span> <span class="n">etc</span> <span class="n">that</span> <span class="n">they</span> <span class="n">are</span> <span class="n">interested</span> <span class="ow">in</span> <span class="n">mapping</span><span class="o">.</span>
-        <span class="o">-</span> <span class="n">Part</span> <span class="n">of</span> <span class="n">this</span> <span class="n">might</span> <span class="n">also</span> <span class="n">tie</span> <span class="n">into</span> <span class="n">the</span> <span class="n">flowmap</span> <span class="n">template</span><span class="p">,</span> <span class="n">which</span> <span class="n">allows</span> <span class="k">for</span> <span class="n">multiple</span> <span class="n">flow</span> <span class="n">sheets</span><span class="o">.</span>
-<span class="o">-</span> <span class="mi">7</span> <span class="n">Make</span> <span class="n">drag</span> <span class="ow">and</span> <span class="n">drop</span> <span class="n">flask</span> <span class="n">app</span><span class="p">,</span> <span class="n">that</span> <span class="n">handles</span> <span class="n">replica</span> <span class="n">csvs</span><span class="o">.</span>
-    <span class="o">-</span> <span class="n">Drop</span> <span class="n">replica</span> <span class="n">file</span> <span class="n">into</span> <span class="n">browser</span> <span class="n">window</span>
-    <span class="o">-</span><span class="n">select</span> <span class="n">days</span> <span class="ow">and</span> <span class="n">times</span>
-    <span class="o">-</span><span class="n">python</span> <span class="n">identifies</span> <span class="n">county</span><span class="p">(</span><span class="n">ies</span><span class="p">)</span> <span class="ow">and</span> <span class="n">parses</span> <span class="n">file</span> <span class="n">based</span> <span class="n">on</span> <span class="n">time</span> <span class="n">selections</span>
-    <span class="o">-</span><span class="n">creates</span> <span class="n">flowmap</span> <span class="n">compatible</span> <span class="n">sheet</span><span class="o">.</span>
-<span class="o">-</span><span class="mi">8</span> <span class="n">Quantify</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">intra</span><span class="o">-</span><span class="n">geo</span> <span class="n">trips</span>
-
-
-<span class="n">Questions</span>
-<span class="o">---------</span>
-<span class="o">-</span><span class="n">How</span> <span class="n">are</span> <span class="n">census</span> <span class="n">tracts</span> <span class="n">named</span> <span class="ow">in</span> <span class="n">Replica</span> <span class="n">Data</span> <span class="n">vs</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Census</span> Geographies<span class="o">?</span>
-    <span class="o">-</span><span class="n">Replica</span> <span class="n">Data</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">use</span> <span class="n">Census</span> <span class="n">GEOID</span> <span class="n">column</span>
-
-<span class="o">-</span><span class="n">Some</span> <span class="n">destination</span> <span class="n">tracts</span> <span class="n">are</span> <span class="n">populated</span> <span class="k">with</span> <span class="n">the</span> <span class="n">value</span> <span class="s2">&quot;aggregated_low_volumes&quot;</span>
-    <span class="o">-</span><span class="n">What</span> <span class="n">exactly</span> <span class="n">does</span> <span class="n">this</span> <span class="n">mean</span> <span class="ow">and</span> <span class="n">how</span> <span class="n">should</span> <span class="n">it</span> <span class="n">be</span> handled<span class="o">?</span>
-    <span class="o">-</span><span class="n">Rows</span> <span class="k">with</span> <span class="n">this</span> <span class="n">value</span> <span class="n">appear</span> <span class="n">to</span> <span class="n">have</span> <span class="n">proper</span> <span class="n">GEOIDs</span> <span class="ow">in</span> <span class="n">Origin</span> <span class="n">column</span><span class="o">.</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">xlsxwriter</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Replica Data</span>
-<span class="n">replica_data</span> <span class="o">=</span> <span class="s2">&quot;/Users/calvindechicago/PycharmProjects/AltaWork/Replica_Flowmap_Blue/Alameda-County--CA-&amp;-4-other-areas_O-D-data_Trips-ending-in-location_Tract_weekof_Jan-27--2020.csv&quot;</span>
-
-<span class="c1">#Flowmap Template</span>
-<span class="n">flowmap_blue</span> <span class="o">=</span> <span class="s2">&quot;/Users/calvindechicago/PycharmProjects/AltaWork/Replica_Flowmap_Blue/Flowmap.blue template spreadsheet.xlsx&quot;</span>
-
-<span class="c1">#California Census Tracts -  Cartographic Boundaries</span>
-<span class="n">census_tracts</span> <span class="o">=</span> <span class="s2">&quot;/Users/calvindechicago/PycharmProjects/AltaWork/Replica_Flowmap_Blue/cb_2018_06_tract_500k/cb_2018_06_tract_500k.shp&quot;</span>
-
-<span class="n">excel_output</span><span class="o">=</span> <span class="s1">&#39;/Users/calvindechicago/PycharmProjects/AltaWork/Replica_Flowmap_Blue/Script_excel_output/flowmap_blue_script_output.xlsx&#39;</span>
-
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;replica filepath is valid: &quot;</span><span class="p">,</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">replica_data</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;flowmap template filepath is valid: &quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">flowmap_blue</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;census tract filepath is valid: &quot;</span><span class="p">,</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">census_tracts</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">replica_data</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[3]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create dataframe from Replica data</span>
-<span class="n">replica</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">replica_data</span><span class="p">)</span>
-
-<span class="c1"># Create dataframes for each Flowmap template sheet</span>
-<span class="n">flowmap_prop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">flowmap_blue</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">flowmap_locations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">flowmap_blue</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">flowmap_flows</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">flowmap_blue</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create geodataframe from Census Tract Data</span>
-<span class="n">census_tracts</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">census_tracts</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Reproject census tract data to EPSG 2227</span>
-<span class="n">census_tracts</span> <span class="o">=</span> <span class="n">census_tracts</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:2227&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Dissolve census tracts by county</span>
-<span class="n">ct_dis</span> <span class="o">=</span> <span class="n">census_tracts</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;COUNTYFP&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create county fips column</span>
-<span class="n">ct_dis</span><span class="p">[</span><span class="s1">&#39;COUNTYFP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ct_dis</span><span class="o">.</span><span class="n">index</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create Alameda dataframe</span>
-<span class="n">alam</span> <span class="o">=</span> <span class="n">ct_dis</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ct_dis</span><span class="p">[</span><span class="s1">&#39;COUNTYFP&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;001&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Buffer Alameda County (900000 ft is about 170 miles)</span>
-
-<span class="n">alam_b</span> <span class="o">=</span> <span class="n">alam</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">900000</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">alam_b</span><span class="p">))</span>
-
-<span class="c1"># Buffer function ouputs geoseries, but we want a geodataframe</span>
-<span class="c1"># Convert buffer output to geodataframe</span>
-<span class="n">alam_b</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">alam_b</span><span class="p">))</span>
-
-<span class="c1"># Set geometry column</span>
-<span class="n">alam_b</span> <span class="o">=</span> <span class="n">alam_b</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;geometry&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">)</span>
-
-<span class="c1"># Set CRS</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">alam_b</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
-<span class="n">alam_b</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s1">&#39;epsg:2227&#39;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;geopandas.geoseries.GeoSeries&#39;&gt;
-None
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Intersect overlay function clips geometry. This will not work because these are census tract.</span>
-<span class="c1">#What we want is a filtered selection of any census tract that intersects with the buffered study County</span>
-<span class="c1">#geopandas.sjoin(left_df, right_df, how=&#39;inner&#39;, op=&#39;intersects&#39;, lsuffix=&#39;left&#39;, rsuffix=&#39;right&#39;)</span>
-
-<span class="n">ctracts</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">census_tracts</span><span class="p">,</span> <span class="n">alam_b</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="s1">&#39;intersects&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create Centroids for study area census tracts</span>
-<span class="n">ctracts</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctracts</span><span class="o">.</span><span class="n">centroid</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ctracts</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[20]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8c72509410&gt;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Project to EPSG 4326, which is compatible with Flowmap</span>
-
-<span class="n">ctracts</span> <span class="o">=</span> <span class="n">ctracts</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Flowmap requires a Latitude column and a longitude column.  Make Lat/Lon columns</span>
-
-<span class="n">ctracts</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctracts</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span>
-<span class="n">ctracts</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctracts</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Make a sheet of locations for Flowmap</span>
-<span class="n">locations</span> <span class="o">=</span> <span class="n">ctracts</span><span class="p">[[</span><span class="s1">&#39;GEOID&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">]]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set GEOID data type. </span>
-
-<span class="n">new_dtypes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;GEOID&quot;</span><span class="p">:</span> <span class="s1">&#39;int64&#39;</span><span class="p">}</span>
-
-<span class="n">locations</span> <span class="o">=</span> <span class="n">locations</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">new_dtypes</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Flowmap requires a column named &#39;id&#39;. Create this from the GEOID column here. </span>
-<span class="n">locations</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">locations</span><span class="p">[</span><span class="s1">&#39;GEOID&#39;</span><span class="p">]</span>
-
-<span class="c1"># Remove GEOID column</span>
-<span class="n">locations</span> <span class="o">=</span> <span class="n">locations</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">]]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Rename Index</span>
-<span class="n">locations</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">locations</span><span class="o">.</span><span class="n">index</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Sum all &#39;start_hour_trips_count_avg_weekday&#39; values for each OD pair</span>
-<span class="n">replica_group</span> <span class="o">=</span> <span class="n">replica</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;origin_tract&#39;</span><span class="p">,</span> <span class="s1">&#39;destination_tract&#39;</span><span class="p">])[</span><span class="s1">&#39;start_hour_trips_count_avg_weekday&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">replica_agg</span> <span class="o">=</span> <span class="n">replica_group</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove rows with &#39;aggregated_low_volumns&#39; value</span>
-<span class="n">replica_agg</span> <span class="o">=</span> <span class="n">replica_agg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">replica_agg</span><span class="p">[</span><span class="s1">&#39;destination_tract&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;aggregated_low_volumes&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_dtypes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;origin_tract&quot;</span><span class="p">:</span> <span class="s1">&#39;int64&#39;</span><span class="p">,</span>
-              <span class="s2">&quot;destination_tract&quot;</span><span class="p">:</span> <span class="s1">&#39;int64&#39;</span><span class="p">,</span>
-              <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="s1">&#39;int64&#39;</span><span class="p">}</span>
-
-<span class="n">replica_agg</span> <span class="o">=</span> <span class="n">replica_agg</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">new_dtypes</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identify and remove intra-geo trips</span>
-<span class="n">replica_agg</span> <span class="o">=</span> <span class="n">replica_agg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">replica_agg</span><span class="p">[</span><span class="s1">&#39;origin_tract&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">replica_agg</span><span class="p">[</span><span class="s1">&#39;destination_tract&#39;</span><span class="p">]]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">replica_agg</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="s1">&#39;dest&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove unwanted rows from Flowmap properties sheet. </span>
-<span class="n">properties</span> <span class="o">=</span> <span class="n">flowmap_prop</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flowmap_prop</span><span class="p">[</span><span class="s1">&#39;property&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;mapbox.accessToken&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[200]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Export Flowmap Compatible dataframes to Excel. </span>
-<span class="c1"># The exported Excel file can be imported directly into Google Sheets, which can be used with Flowmap.blue</span>
-
-<span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="n">excel_output</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
-    <span class="n">replica_agg</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;flows&#39;</span><span class="p">)</span>
-    <span class="n">locations</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;locations&#39;</span><span class="p">)</span>
-    <span class="n">properties</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;properties&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-    </div>
-</div>
-</div>
-
-</div>
-    </div>
-  </div>
-	</div>
-  <br>
-<br>
-
+<div class="row">
 <div class= "col-sm-12">
-  <p><i> This website's backend is driven by Python and Flask, and is managed using Git and Github, which allows for clearly documented version control and collaboration. The Github repository for this website can be viewed
-      <a href="https://github.com/calvinbrown32/Flask_DOT"> here.</a></i></p>
-	</div>
 
+  <div id="maptest" class="maptest"></div>
+  <script type="text/javascript">
 
-	<!--
--->
-    </div>
-  </div>
+      var maptest = new ol.Map(
+      {
+        target:'maptest',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([37.41, 8.82]),
+          zoom: 4
+        })
+      });
+    console.log('Hello ... Testing ')
+    </script>
+
+    <div> Map Div above --</div>
 </div>
+</div>
+</div>
+
 
 
   <footer>
@@ -800,7 +198,5 @@ None
     </div>
   </div>
 </footer>
-
-
 </body>
 </html>
